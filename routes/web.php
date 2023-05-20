@@ -17,8 +17,8 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+//Route User
 Route::redirect('/', '/users');
 
-// route resource
+// Route resource
 Route::resource('/users', UserController::class);

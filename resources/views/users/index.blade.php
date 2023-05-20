@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
+{{-- INDEX USER --}}
      <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
