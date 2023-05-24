@@ -2,7 +2,7 @@
 
 @section('container')
     {{-- CREATE USER --}}
-    <div class="container mt-5 mb-5">
+    {{-- <div class="container mt-5 mb-5">
         <div class="row">
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
@@ -118,7 +118,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
       
     
 @endsection

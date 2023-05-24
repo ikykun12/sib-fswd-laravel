@@ -1,61 +1,52 @@
-<!doctype html>
-<html lang>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>DASHBOARD</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Dashboard - SB Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
-<body>
-  {{-- Navbar start --}}
-    <header class="main_menu home_menu">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-12">
-                    <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="#"> <p class="">DASHBOARD</p> </a>
-                    </nav>
-                </div>
+
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="#">Start Bootstrap</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
             </div>
+        </form>
+        <!-- Navbar-->
+        @include('includes.navbar')
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <!-- Sidebar -->
+            @include('includes.sidebar')
         </div>
-    </header>
-    @yield('container')
-    {{-- Footer Star --}}
-       <footer class="footer_part">
-        <div class="copyright_part">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="copyright_text">
-                            <P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |||RISKY PRANATA 
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div id="layoutSidenav_content">
+            {{-- Container --}}
+            @yield('container')
+            @include('includes.footer')
         </div>
-    </footer>
-
-    <!--::footer_part end::-->
- <script>
-        function togglePasswordVisibility() {
-            var passwordInput = document.getElementById("password-input");
-            var passwordVisibilityButton = document.getElementById("password-visibility-button");
-
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                passwordVisibilityButton.innerHTML = '<i class="fas fa-eye-slash"></i>';
-            } else {
-                passwordInput.type = "password";
-                passwordVisibilityButton.innerHTML = '<i class="fas fa-eye"></i>';
-            }
-        }
-    
-   
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
-
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('js/chart-bar-demo.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/datatables-simple-demo.js') }}"></script>
 </body>
 
 </html>
