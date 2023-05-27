@@ -1,171 +1,83 @@
 <?php
-// UserController
+
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    /**
-     * Menampilkan tabel users
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //get users
-        $users = User::latest()->paginate(5);
-
-        //render view with posts
-        return view('users.index', compact('users'));
+        // Ambil semua data user dari database
+        $users = User::with('role')->get();
+        
+        // Tampilkan halaman index
+        return view('user.index', compact('users'));
     }
 
-    /**
-     * Menampilkan form tambah user baru
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        // render view
-        return view('users.create');
+        // Ambil data roles dari database
+        $roles = Role::all();
+        
+        // Tampilkan form create user dengan passing data roles
+        return view('user.create', compact('roles'));
     }
 
-    /**
-     * Memproses tambah data user baru
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //validate form
-        $this->validate($request, [
-            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'name' => 'required|string|max:100',
-            'email' => 'required|email|max:100',
-            'phone' => 'required|string|max:15',
-            'address' => 'required|string|max:255',
-            'password' => 'required|string|max:100',
-            'role' => ['required', Rule::in(['admin', 'staff'])],
-        ]);
-
-        //upload avatar
-        $image = $request->file('avatar');
-        $avatarName = $image->hashName();
-        $image->storeAs('public/images', $avatarName);
-
-        //create post
-        User::create([
-            'avatar' => "images/$avatarName",
+        // Simpan data ke database
+        $user = User::create([
             'name' => $request->name,
-            'role' => $request->role,
-            'password' => $request->password,
             'email' => $request->email,
             'phone' => $request->phone,
-            'address' => $request->address,
+            'role_id' => $request->role,
+            'password' => bcrypt('password') // default password, sementara di hardcode
         ]);
 
-        //redirect to index
-        return redirect()->route('users.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        // Redirect ke halaman user.index
+        return redirect()->route('user.index');
     }
-
-    /**
-     * Menampilkan detail data user tertentu
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
+    
+    public function edit($id)
     {
-        //return view
-        return view('users.show', compact('user'));
+        // Ambil data user berdasarkan id
+        $user = User::find($id);
+        
+        // Ambil data roles dari database
+        $roles = Role::all();
+        
+        // Tampilkan halaman edit dengan passing data user dan roles
+        return view('user.edit', compact('user', 'roles'));
     }
-
-    /**
-     * Menampilkan form edit data user
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
+    
+    public function update(Request $request, $id)
     {
-        // return view
-        return view('users.edit', compact('user'));
-    }
-
-    /**
-     * Proses edit data user
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
-    {
-        //validate form
-        $this->validate($request, [
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'name' => 'required|string|max:100',
-            'email' => 'required|email|max:100',
-            'phone' => 'required|string|max:15',
-            'address' => 'required|string|max:255',
-            'password' => 'required|string|max:100',
-            'role' => ['required', Rule::in(['admin', 'staff'])],
+        // Ambil data user berdasarkan id
+        $user = User::find($id);
+        
+        // Update data user
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone
         ]);
-
-        //check if avatar is uploaded
-        if ($request->hasFile('avatar')) {
-            //upload new avatar
-            $image = $request->file('avatar');
-            $avatarName = $image->hashName();
-            $image->storeAs('public/images', $avatarName);
-
-            //delete old image
-            Storage::delete('public/' . $user->avatar);
-
-            //update user with new avatar
-            $user->update([
-                'avatar' => "images/$avatarName",
-                'name' => $request->name,
-                'role' => $request->role,
-                'password' => $request->password,
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'address' => $request->address,
-            ]);
-        } else {
-            //update user without avatar
-            $user->update([
-                'name' => $request->name,
-                'role' => $request->role,
-                'password' => $request->password,
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'address' => $request->address,
-            ]);
-        }
-
-        //redirect to index
-        return redirect()->route('users.index')->with(['success' => 'Data Berhasil Diubah!']);
+        
+        // Redirect ke halaman user.index
+        return redirect()->route('user.index');
     }
-
-    /**
-     * Hapus data user
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
+    
+    public function destroy($id)
     {
-        //delete image
-        Storage::delete('public/' . $user->avatar);
-        //delete post
+        // Ambil data user berdasarkan id
+        $user = User::find($id);
+        
+        // Hapus data user
         $user->delete();
-        //redirect to index
-        return redirect()->route('users.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        
+        // Redirect ke halaman user.index
+        return redirect()->route('user.index');
     }
 }

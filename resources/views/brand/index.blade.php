@@ -1,11 +1,11 @@
 @extends('layouts.main')
 
 @section('container')
-     <main>
+    <main>
         <div class="container-fluid px-4">
-            <h1 class="my-4">Role</h1>
-            
-            <a href="{{ route('role.create') }}" class="btn btn-primary mb-2">Create New</a>
+            <h1 class="my-4">Brand</h1>
+
+            <a class="btn btn-primary mb-2" href="{{ route('brand.create') }}" role="button">Create New</a>
 
             <div class="card mb-4">
                 <div class="card-body">
@@ -13,21 +13,21 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
-                                <th>Action</th>
+                                <th>Nama</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($roles as $role)
+                            @foreach ($brands as $brand)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $role->name }}</td>
+                                    <td>{{ $brand->name }}</td>
                                     <td>
-                                        <form action="{{ route('role.destroy', $role->id) }}" method="POST" class="d-inline">
-                                            <a href="{{ route('role.edit', $role->id) }}" class="btn btn-warning">Edit</a>
+                                        <form onsubmit="return confirm('Are you sure? ');" action="{{ route('brand.destroy', $brand->id) }}" method="POST">
+                                            <a href="{{ route('brand.edit', $brand->id) }}" class="btn btn-sm btn-warning">Edit</a>
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
