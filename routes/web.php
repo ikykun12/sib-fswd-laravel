@@ -9,7 +9,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Slider;
+
 
 /*
 |--------------------------------------------------------------------------

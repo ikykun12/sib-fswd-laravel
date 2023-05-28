@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
-<main>
+    <main>
         <div class="container-fluid px-4">
             <h1 class="my-4">Slider</h1>
 
@@ -31,8 +31,8 @@
                                     </td>
 
                                     <td>
-                                        <form onsubmit="return confirm('Are you sure? ');" action="{{ route('slider.destroy', $slider->id) }}" method="POST">
-                                            <a href="{{ route('slider.edit', $slider->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                        <form onsubmit="return confirm('Are you sure? ');" action="{{ route('slider.destroy', ['id' => $slider->id]) }}" method="POST">
+                                            <a href="{{ route('slider.edit', ['id' => $slider->id]) }}" class="btn btn-sm btn-warning">Edit</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>

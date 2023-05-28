@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('create_sliders', function (Blueprint $table) {
+        Schema::create('sliders', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->text('caption');
             $table->string('image');
-            $table->timestamps();       
+            $table->timestamps();
         });
     }
 
