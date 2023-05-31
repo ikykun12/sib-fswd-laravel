@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class SliderController extends Controller
@@ -12,8 +13,12 @@ class SliderController extends Controller
     {
         $sliders = Slider::all();
 
-       
-        return view('slider.index', compact('sliders'));
+        if(Auth::user()->role->name == 'Admin')
+        {
+            return view('slider.approve', compact('sliders'));
+        }else{
+            return view('slider.index', compact('sliders'));
+        }
     }
 
     public function create()
@@ -97,5 +102,14 @@ class SliderController extends Controller
 
        
         return redirect()->route('slider.index');
+    }
+    public function approve(Request $request, $id)
+    {
+        $status = $request->status;
+
+        Slider::where('id', $id)->update([
+                'approve'=>$status
+            ]);
+        return redirect()->back();
     }
 }

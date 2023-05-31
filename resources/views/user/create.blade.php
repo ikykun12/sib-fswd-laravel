@@ -22,6 +22,10 @@
                             <input type="text" class="form-control" id="phone" name="phone" required>
                         </div>
                         <div class="mb-3">
+                            <label for="password" class="form-label">Passsword</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <div class="mb-3">
                             <label for="role" class="form-label">Role</label>
                             <select class="form-select" aria-label="role" id="role" name="role">
                                 <option selected disabled>- Choose Role -</option>

@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Ecommer</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{{ asset('css/landing.css') }}" rel="stylesheet" />
-    </head>
-    <body>
-         <!-- Navigation-->
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>LaraShop - One Stop Shopping</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{{ asset('css/landing.css') }}" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#!">Ecommer</a>
+            <a class="navbar-brand" href="#!">LaraShop</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -39,7 +41,7 @@
                         Cart
                         <span class="badge bg-light text-dark ms-1 rounded-pill">0</span>
                     </a>
-                    <a href="{{ route('dashboard') }}" class="btn btn-outline-light ms-1">
+                    <a href="{{ route('login') }}" class="btn btn-outline-light ms-1">
                         <i class="bi-person-fill me-1"></i>
                         Login
                     </a>
@@ -85,31 +87,31 @@
                         <div class="card h-100">
                             @if ($product['sale_price'] != 0)
                                 <!-- Sale badge-->
-                                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                                <div class="badge bg-success text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
                             @endif
 
                             <!-- Product image-->
-                            <img class="card-img-top" src="{{ asset('img/Hp_Realme.jpeg') }}" alt="..." />
+                            <img class="card-img-top" src="{{ asset('storage/product/' . $product->image) }}" alt="{{ $product->name }}" />
 
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
                                     <a href="#" style="text-decoration: none" class="text-dark">
-                                        <h5 class="fw-bolder">{{ $product['name'] }}</h5>
+                                        <h5 class="fw-bolder">{{ $product->name }}</h5>
                                     </a>
                                     <!-- Product reviews-->
                                     <div class="d-flex justify-content-center small text-warning mb-2">
-                                        @for ($i = 0; $i < $product['rating']; $i++)
+                                        @for ($i = 0; $i < $product->rating; $i++)
                                             <div class="bi-star-fill"></div>
                                         @endfor
                                     </div>
                                     <!-- Product price-->
                                     @if ($product['sale_price'] != 0)
-                                        <span class="text-muted text-decoration-line-through">Rp.{{ number_format($product['price'], 0) }}</span>
-                                        Rp.{{ number_format($product['sale_price'], 0) }}
+                                        <span class="text-muted text-decoration-line-through">Rp.{{ number_format($product->price, 0) }}</span>
+                                        Rp.{{ number_format($product->sale_price, 0) }}
                                     @else
-                                        Rp.{{ number_format($product['price'], 0) }}
+                                        Rp.{{ number_format($product->price, 0) }}
                                     @endif
                                 </div>
                             </div>
@@ -127,15 +129,16 @@
             </div>
         </div>
     </section>
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
-            </div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        {{-- <script src="js/scripts.js"></script> --}}
-    </body>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    {{-- <script src="js/scripts.js"></script> --}}
+</body>
+
 </html>

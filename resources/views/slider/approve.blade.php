@@ -39,11 +39,17 @@
                                         
                                     </td>
                                     <td>
-                                        <form onsubmit="return confirm('Are you sure? ');" action="{{ route('slider.destroy', ['id' => $slider->id]) }}" method="POST">
-                                            <a href="{{ route('slider.edit', ['id' => $slider->id]) }}" class="btn btn-sm btn-warning">Edit</a>
+                                       <form onsubmit="return confirm('Are you sure? ');" action="{{ route('slider.approve', ['id' => $slider->id]) }}" method="POST">
                                             @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                            @method('PUT')
+                                            <input class="d-none" type="text" name="status" value="0">
+                                            <button type="submit" class="btn btn-sm btn-danger">Tidak Setuju</button>
+                                        </form>
+                                        <form onsubmit="return confirm('Are you sure? ');" action="{{ route('slider.approve', ['id' => $slider->id]) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <input class="d-none" type="text" name="status" value="1" >
+                                            <button type="submit" class="btn btn-sm btn-danger">Setuju</button>
                                         </form>
                                     </td>
                                 </tr>

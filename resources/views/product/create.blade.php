@@ -6,7 +6,7 @@
 
             <div class="card mb-4">
                 <div class="card-body">
-                    <form action="{{ route('product.store') }}" method="POST">
+                      <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="category" class="form-label">Category</label>

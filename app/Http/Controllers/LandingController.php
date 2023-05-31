@@ -15,7 +15,8 @@ class LandingController extends Controller
 
         $categories = Category::all();
 
-        $sliders = Slider::all();
+        $sliders = Slider::where("approve",1)->get();
+
 
         return view('landing',compact('products','categories','sliders'));
     }
