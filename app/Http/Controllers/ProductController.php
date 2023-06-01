@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -13,8 +14,14 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with('category')->get();
-
-        return view('product.index', ['products' => $products]);
+        
+        
+        if(Auth::user()->role->name == 'Admin')
+        {
+            return view('product.approve', compact('products'));
+        }else{
+            return view('product.index', compact('products'));
+        }
     }
 
     public function create()
@@ -108,5 +115,14 @@ class ProductController extends Controller
 
         
         return redirect()->route('product.index');
+    }
+    public function approve(Request $request, $id)
+    {
+        $status = $request->status;
+        
+        Product::where('id',$id)->update([
+            'approve'=>$status
+        ]);
+        return redirect()->back();
     }
 }

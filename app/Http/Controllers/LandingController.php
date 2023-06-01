@@ -11,7 +11,7 @@ class LandingController extends Controller
 {
     public function index()
     {
-        $products = Product::inRandomOrder(8)->get();
+        $products = Product::where("approve",1)->get();
 
         $categories = Category::all();
 

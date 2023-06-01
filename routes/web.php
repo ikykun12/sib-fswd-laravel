@@ -70,7 +70,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
     Route::put('/product/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
-
+    Route::put('/product/approve/{id}',[ProductController::class,'approve'])->name('product.approve');
     // User
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::get('/user/create', [UserController::class, 'create'])->name('user.create');

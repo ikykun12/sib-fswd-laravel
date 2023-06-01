@@ -21,10 +21,11 @@ return new class extends Migration
             $table->bigInteger("sale_price")->default(0);
             $table->string("brands")->nullable();
             $table->integer("rating")->default(0);
+            $table->string("image");
+            $table->boolean("approve")->default(0);
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

@@ -29,6 +29,10 @@
                             <label for="sale-price" class="form-label">Sale Price</label>
                             <input type="text" class="form-control" id="sale-price" name="sale_price" required>
                         </div>
+                         <div class="mb-3">
+                            <label for="image" class="form-label">Products Image</label>
+                            <input class="form-control" type="file" name="image" id="image" accept=".jpg, .jpeg, .png., .webp">
+                        </div>
                         <div class="mb-3">
                             <label for="brand" class="form-label">Brand</label>
                             <select class="form-select" aria-label="brand" id="brand" name="brand">
