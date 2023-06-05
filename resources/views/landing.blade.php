@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>LaraShop - One Stop Shopping</title>
+    <title>Ecommer - One Stop Shopping</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     <!-- Bootstrap icons-->
@@ -17,38 +17,50 @@
 
 <body>
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#!">LaraShop</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+    <nav class="navbar navbar-expand-lg navbar-light bg-info p-3">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Ecommer Motor Online</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            @foreach ($categories as $category)
-                                <li><a class="dropdown-item" href="#!">{{ $category->name }}</a></li>
-                            @endforeach
-                        </ul>
-                    </li>
+          <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto ">
+              <li class="nav-item">
+                <a class="nav-link mx-2 active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Categories
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    @foreach ($categories as $category)
+                        <li>
+                            <a class="dropdown-item" href="#!">{{ $category->name }}</a>
+                        </li>
+                    @endforeach
                 </ul>
-                <form class="d-flex">
-                    <a class="btn btn-outline-light" role="button" href="#">
-                        <i class="bi-cart-fill me-1"></i>
-                        Cart
-                        <span class="badge bg-light text-dark ms-1 rounded-pill">0</span>
-                    </a>
-                    <a href="{{ route('login') }}" class="btn btn-outline-light ms-1">
-                        <i class="bi-person-fill me-1"></i>
-                        Login
-                    </a>
-                </form>
-            </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-2" href="#">Contact</a>
+              </li>
+              <li class="nav-item">
+                    <form class="d-flex">
+                        <a class="btn btn-outline-light" role="button" href="#">
+                            <i class="bi-cart-fill me-1"></i>
+                            Cart
+                            <span class="badge bg-light text-dark ms-1 rounded-pill">0</span>
+                        </a>
+                        <a href="{{ route('login') }}" class="btn btn-outline-light ms-1">
+                            <i class="bi-person-fill me-1"></i>
+                            Login
+                        </a>
+                    </form>
+              </li>
+            </ul>
+          </div>
         </div>
-    </nav>
+      </nav>
     <!-- Carousel-->
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -60,7 +72,7 @@
         <div class="carousel-inner">
             @foreach ($sliders as $slider)
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}" data-bs-interval="3000">
-                    <img src="{{ asset('storage/slider/' . $slider->image) }}" class="d-block w-100" alt="{{ $slider->image }}">
+                    <img src="{{ asset('storage/slider/' . $slider->image) }}"  class="d-block w-100" alt="{{ $slider->image }}">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>{{ $slider->title }}</h5>
                         <p>{{ $slider->caption }}</p>
@@ -79,12 +91,44 @@
     </div>
     <!-- Section-->
     <section class="py-5">
+        <style>
+            .filter-nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .filter-nav button {
+                margin: 5px;
+            }
+
+            @media (max-width: 768px) {
+                .filter-nav {
+                    flex-direction: column;
+                    align-items: center;
+                }
+            }
+        </style>
+        <form action="{{ route('product.filter') }}" method="GET">
+            <div class="filter">
+                <div class="filter-nav px-4 px-lg-5 mt-5">
+                    <div class="container">
+                    <button class="btn btn-success active" name="all">All</button>
+                    <button class="btn btn-primary" name="harga_min">Harga Terendah</button>
+                    <button class="btn btn-primary" name="harga_max">Harga Tertinggi</button>
+                    <button class="btn btn-primary" name="jenis">Jenis</button>
+                    </div>
+                </div>
+             </div>
+           </form>
+
         <div class="container px-4 px-lg-5 mt-5">
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+            <div class="row row-cols-1 row-cols-md-3 g-4">
 
                 @forelse ($products as $product)
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card">
                             @if ($product['sale_price'] != 0)
                                 <!-- Sale badge-->
                                 <div class="badge bg-success text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
@@ -115,6 +159,15 @@
                                     @endif
                                 </div>
                             </div>
+                             <div class="">
+                                <div class="container">
+                                    <div class="text-center">
+                                        <div>
+                                             ({{ $product->name }} - Stock: {{ $product->stock }})
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
@@ -130,11 +183,18 @@
         </div>
     </section>
     <!-- Footer-->
-    <footer class="py-5 bg-dark">
+    <footer class="footer">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
+            <div class="row">
+                <div class="col text-center">
+                    <a href="https://www.facebook.com" target="_blank">
+                        <i class="fab fa-facebook fa-2x">A  </i>
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
+
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->

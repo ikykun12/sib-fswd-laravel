@@ -16,7 +16,6 @@
                                 <th>Title</th>
                                 <th>Caption</th>
                                 <th>Image</th>
-                                <th>Approve</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -29,14 +28,6 @@
                                     <td>
                                         <img src="{{ asset('storage/slider/' . $slider->image) }}" class="img-fluid" style="max-width: 100px;"
                                             alt="{{ $slider->image }}">
-                                    </td>
-                                    <td>
-                                        @if ($slider->approve)
-                                            <i class="fa-solid fa-2xl fa-check"></i>
-                                        @else
-                                            <i class="fa-regular fa-2xl fa-circle-xmark"></i>
-                                        @endif
-                                        
                                     </td>
                                     <td>
                                         <form onsubmit="return confirm('Are you sure? ');" action="{{ route('slider.destroy', ['id' => $slider->id]) }}" method="POST">

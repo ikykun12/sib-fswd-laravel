@@ -17,7 +17,10 @@
                                 <th>Nama</th>
                                 <th>Price</th>
                                 <th>Sale Price</th>
+                                <th>Brands</th>
                                 <th>Image</th>
+                                <th>Approve</th>
+                                <th>Stock</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -30,12 +33,23 @@
                                     <td>Rp. {{ number_format($product->price, 0, 2) }}</td>
                                     <td>Rp. {{ number_format($product->sale_price, 0, 2) }}</td>
                                     <td>{{ $product->brands }}</td>
+
                                      <td>
                                         @if ($product->image == null)
                                             <span class="badge bg-primary">No Image</span>
                                         @else
                                             <img src="{{ asset('storage/product/' . $product->image) }}" alt="{{ $product->name }}" style="max-width: 50px">
                                         @endif
+                                    </td>
+                                    <td>
+                                        @if ($product->approve)
+                                            <i class="fa-solid fa-2xl fa-check"></i>
+                                        @else
+                                             <i class="fa-regular fa-2xl fa-circle-xmark"></i>
+                                        @endif
+                                    </td>
+                                    <td>
+                                       {{ $product->name }} - Stock: {{ $product->stock }}
                                     </td>
                                     <td>
                                         <form onsubmit="return confirm('Are you sure? ');" action="{{ route('product.destroy', $product->id) }}" method="POST">

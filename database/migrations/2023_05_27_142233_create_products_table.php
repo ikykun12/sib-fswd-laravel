@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer("rating")->default(0);
             $table->string("image");
             $table->boolean("approve")->default(0);
+            $table->integer("stock")->default(0);
             $table->timestamps();
         });
     }

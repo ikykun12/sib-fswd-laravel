@@ -9,7 +9,7 @@
                      <form action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        
+
                         <div class="mb-3">
                             <label for="category" class="form-label">Category</label>
                             <select class="form-select" aria-label="category" id="category" name="category">
@@ -43,6 +43,10 @@
                                     <option value="{{ $brand->name }}" {{ $product->brands == $brand->name ? 'selected' : '' }}>{{ $brand->name }}</option>
                                 @endforeach
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            <input type="number" name="stock" value="{{ $product->stock }}" required>
+                            <button type="submit">Update Stock</button>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <button type="button" class="btn btn-secondary">Cancel</button>

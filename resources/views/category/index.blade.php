@@ -8,6 +8,7 @@
 
             <div class="card mb-4">
                 <div class="card-body">
+                   <div class="table-responsive">
                     <table id="dataTable" class="table table-striped">
                         <thead>
                             <tr>
@@ -34,6 +35,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                   </div>
                 </div>
             </div>
         </div>
