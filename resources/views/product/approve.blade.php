@@ -56,7 +56,10 @@
                                         </form>
                                     </td>
                                     <td>
-                                        {{ $product->name }} - Stock: {{ $product->stock }}
+                                        <span>
+                                            <p>Stock</p>
+                                            <h5>{{ $product->stock }}</h5>
+                                         </span>
                                     </td>
                                 </tr>
                             @endforeach

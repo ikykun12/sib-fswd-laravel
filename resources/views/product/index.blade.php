@@ -49,7 +49,10 @@
                                         @endif
                                     </td>
                                     <td>
-                                       {{ $product->name }} - Stock: {{ $product->stock }}
+                                        <span>
+                                            <p>Stock</p>
+                                            <h5>{{ $product->stock }}</h5>
+                                         </span>
                                     </td>
                                     <td>
                                         <form onsubmit="return confirm('Are you sure? ');" action="{{ route('product.destroy', $product->id) }}" method="POST">

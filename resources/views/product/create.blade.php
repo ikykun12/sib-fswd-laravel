@@ -3,11 +3,11 @@
 <main>
     <div class="container-fluid px-4">
         <h1 class="my-4">Create Product</h1>
-
         <div class="card mb-4">
             <div class="card-body">
                 <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('POST')
                     <div class="mb-3">
                         <label for="category" class="form-label">Category</label>
                         <select class="form-select @error('category') is-invalid @enderror" aria-label="category" id="category" name="category">
@@ -58,16 +58,6 @@
                         <label for="image" class="form-label">Product Image</label>
                         <input class="form-control @error('image') is-invalid @enderror" type="file" name="image" id="image" accept=".jpg, .jpeg, .png., .webp">
                         @error('image')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="stock" class="form-label">Stock</label>
-                        <input class="form-control" @error('stock') is-invalid @enderror" type="text" name="name" placeholder="Product Name" required>
-                        <input class="form-control" @error('stock') is-invalid @enderror" type="text" name="code" placeholder="Product Code" required>
-                        <input class="form-control" @error('stock') is-invalid @enderror" type="text" name="description" placeholder="Product Description" required></input>
-                        <input class="form-control"  @error('stock') is-invalid @enderror" type="number" name="stock" placeholder="Product Stock" required>
-                        @error('stock')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>

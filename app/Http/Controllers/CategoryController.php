@@ -30,7 +30,7 @@ class CategoryController extends Controller
     $category = Category::find($id);
     return view('category.edit',compact('category'));
    }
-   
+
 
    public function update(Request $request, $id)
    {
@@ -39,7 +39,7 @@ class CategoryController extends Controller
     $category->update([
         'name'=> $request->name
     ]);
-    
+
    }
 
    public function destroy($id)
@@ -47,9 +47,9 @@ class CategoryController extends Controller
     $category = Category::find($id);
 
     $category->delete();
-    
+
 
     return redirect()->route('category.index');
    }
-       
+
 }

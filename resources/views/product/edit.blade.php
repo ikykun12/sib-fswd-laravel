@@ -6,7 +6,7 @@
 
             <div class="card mb-4">
                 <div class="card-body">
-                     <form action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -31,10 +31,6 @@
                             <label for="sale-price" class="form-label">Sale Price</label>
                             <input type="text" class="form-control" id="sale-price" value="{{ $product->sale_price }}" name="sale_price" required>
                         </div>
-                         <div class="mb-3">
-                            <label for="image" class="form-label">Slider Image <small>(optional)</small> </label>
-                            <input class="form-control" type="file" name="image" id="image" accept=".jpg, .jpeg, .png., .webp">
-                        </div>
                         <div class="mb-3">
                             <label for="brand" class="form-label">Brand</label>
                             <select class="form-select" aria-label="brand" id="brand" name="brand">
@@ -45,11 +41,15 @@
                             </select>
                         </div>
                         <div class="mb-3">
+                            <label for="image" class="form-label">Product Image</label>
+                            <input class="form-control" type="file" name="image" id="image" accept=".jpg, .jpeg, .png., .webp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="number" class="form-label">Stock</label>
                             <input type="number" name="stock" value="{{ $product->stock }}" required>
-                            <button type="submit">Update Stock</button>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="button" class="btn btn-secondary">Cancel</button>
+                        <a href="{{ route('product.index') }}" class="btn btn-secondary">Cancel</a>
                     </form>
                 </div>
             </div>

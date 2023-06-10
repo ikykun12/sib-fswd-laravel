@@ -27,6 +27,25 @@ class ProductController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        $product = Product::where('id', $id)->with('category')->first();
+
+        if ($product) {
+            $related = Product::where('category_id', $product->category->id)
+                ->where('approve', 1) // Menambahkan kondisi approve
+                ->inRandomOrder()
+                ->limit(4)
+                ->get();
+
+            return view('product.show', compact('product', 'related'));
+        } else {
+            abort(404);
+        }
+
+
+    }
+
     public function create()
     {
         $brands = Brand::all();
@@ -43,8 +62,8 @@ class ProductController extends Controller
             'price' => 'required|integer',
             'sale_price' => 'required|integer',
             'brand' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'stock' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg',
+            'stock' => 'required|integer',
         ]);
 
         if ($validator->fails()) {
@@ -136,17 +155,6 @@ class ProductController extends Controller
         return redirect()->route('product.index');
     }
 
-    public function filter(Request $request)
-    {
-        $all      = $request->input('all');
-        $hargaMin = $request->input('harga_min');
-        $hargaMax = $request->input('harga_max');
-        $jenis    = $request->input('jenis');
-
-        $product = Product::whereBetween('all','harga','jenis', [$all, $hargaMin, $hargaMax, $jenis])->get();
-
-        return view('produk.index', compact('product'));
-    }
 
     public function approve(Request $request, $id)
     {

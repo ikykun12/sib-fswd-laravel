@@ -11,6 +11,7 @@ use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,11 +26,15 @@ use App\Http\Controllers\DashboardController;
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 
+Route::get('/contact',[ContactController::class, 'index'])->name('contact');
+
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
+
+Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 
 
 Route::middleware('auth')->group(function() {
@@ -73,12 +78,9 @@ Route::middleware('auth')->group(function() {
         Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
     });
 
-
-
     // Staff & Admin & Customer
     // Product
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
-
 
     Route::middleware('role:Admin|Staff')->group(function(){
         Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
@@ -88,10 +90,7 @@ Route::middleware('auth')->group(function() {
         Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
         Route::put('/product/approve/{id}',[ProductController::class,'approve'])->name('product.approve');
         Route::get('/product/filter}', [ProductController::class, 'filter'])->name('product.filter');
-
-
     });
-
 
     // Admin
     Route::middleware('role:Admin')->group(function(){
