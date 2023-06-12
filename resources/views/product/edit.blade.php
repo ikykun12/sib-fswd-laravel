@@ -1,7 +1,6 @@
 @extends('layouts.main')
-
 @section('container')
-    <main>
+ <main>
         <div class="container-fluid px-4">
             <h1 class="my-4">Edit Product</h1>
 
@@ -41,12 +40,14 @@
                                 @endforeach
                             </select>
                         </div>
-
                         <div class="mb-3">
                             <label for="image" class="form-label">Product Image</label>
                             <input class="form-control" type="file" name="image" id="image" accept=".jpg, .jpeg, .png., .webp">
                         </div>
-
+                        <div class="mb-3">
+                            <label for="number" class="form-label">Stock</label>
+                            <input type="number" name="stock" value="{{ $product->stock }}" required>
+                        </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <a href="{{ route('product.index') }}" class="btn btn-secondary">Cancel</a>
                     </form>

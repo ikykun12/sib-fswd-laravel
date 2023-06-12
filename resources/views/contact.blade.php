@@ -27,12 +27,8 @@
 </head>
 
 <body>
-<!-- Page Preloder -->
- <div id="preloder">
-    <div class="loader"></div>
-    </div>
-     <!-- Navigation-->
-   <!-- Header Section Begin -->
+<!-- Navigation-->
+<!-- Header Section Begin -->
    <header class="header-section">
     <div class="container-fluid">
         <div class="inner-header">

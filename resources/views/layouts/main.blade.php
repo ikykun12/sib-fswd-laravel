@@ -12,6 +12,14 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
+    <link href="{{ asset('css/landing.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/nice-select.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/magnific-popup.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/slicknav.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 
 <body class="sb-nav-fixed">
@@ -46,6 +54,21 @@
     <script src="{{ asset('js/chart-area-demo.js') }}"></script>
     <script src="{{ asset('js/chart-bar-demo.js') }}"></script>
     <script src="{{ asset('js/datatables-demo.js') }}"></script>
+      <!-- Add Bootstrap CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+      <!-- Add Bootstrap JS -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+      <!-- Bootstrap core JS-->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- Core theme JS-->
+      <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+      <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+      <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
+      <script src="{{ asset('js/jquery.slicknav.js') }}"></script>
+      <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+      <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
+      <script src="{{ asset('js/mixitup.min.js') }}"></script>
+      <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 </html>
