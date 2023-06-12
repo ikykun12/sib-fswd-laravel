@@ -89,7 +89,6 @@ Route::middleware('auth')->group(function() {
         Route::put('/product/{id}', [ProductController::class, 'update'])->name('product.update');
         Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
         Route::put('/product/approve/{id}',[ProductController::class,'approve'])->name('product.approve');
-        Route::get('/product/filter}', [ProductController::class, 'filter'])->name('product.filter');
     });
 
     // Admin

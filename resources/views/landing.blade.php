@@ -165,7 +165,6 @@
             </div>
         </div>
     <!-- Features Box -->
-      <!-- Features Box -->
         <div class="features-box">
             <div class="container">
                 <div class="row">
@@ -219,17 +218,16 @@
                         <input type="text" class="form-control" placeholder="Min" name="min" value="{{ old('min') }}">
                     </div>
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" placeholder="Max" name="max" value={{ old('max') }}>
+                        <input type="text" class="form-control" placeholder="Max" name="max" value="{{ old('max') }}">
                     </div>
                     <div class="col-sm-3">
                         <button type="submit" class="btn btn-primary">Terapkan</button>
                     </div>
                 </div>
             </form>
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-
+            <div class="row gx-4 gx-lg-5">
                 @forelse ($products as $product)
-                    <div class="col mb-5">
+                    <div class="col-lg-4 col-sm-6 mb-5">
                         <div class="card h-100">
                             @if ($product['sale_price'] != 0)
                                 <!-- Sale badge-->
@@ -237,7 +235,12 @@
                             @endif
 
                             <!-- Product image-->
-                            <img class="card-img-top" src="{{ asset('storage/product/' . $product->image) }}" alt="{{ $product->name }}" />
+                            {{-- Cek apakah product memiliki image --}}
+                            @if ($product->image)
+                                <img class="card-img-top" src="{{ asset('storage/product/' . $product->image) }}" alt="{{ $product->name }}" />
+                            @else
+                                <img class="card-img-top" src="{{ asset('images/default-product.png') }}" alt="default-image" />
+                            @endif
 
                             <!-- Product details-->
                             <div class="card-body p-4">
@@ -276,6 +279,7 @@
             </div>
         </div>
     </section>
+
      <!-- Lookbok Section Begin -->
      <section class="lookbok-section">
         <div class="container-fluid">
