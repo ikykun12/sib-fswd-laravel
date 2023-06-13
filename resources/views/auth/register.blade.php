@@ -49,6 +49,7 @@
 
                                 <div class="d-grid">
                                     <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Sign Up</button>
+                                    <p><a href="{{ route('login') }}">Back To Login</a></p>
                                 </div>
                             </form>
                         </div>
