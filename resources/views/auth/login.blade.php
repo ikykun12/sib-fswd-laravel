@@ -12,7 +12,6 @@
 </head>
 
 <body>
-
     <div class="container">
     @if (Session::get('success'))
     <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
@@ -28,7 +27,7 @@
     @endif
         <div class="row justify-content-center">
             <div class="col-md-6 text-center mb-5">
-                <h2 class="heading section">Login Ecomer</h2>
+                <h2 class="heading section">Login Ecommer</h2>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -49,7 +48,6 @@
                         </div>
                         <form action="{{ route('login.authenticate') }}" method="POST">
                             @csrf
-
                             <div class="form-floating mb-3">
                                 <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" required>
                                 <label for="floatingInput">Email address</label>
