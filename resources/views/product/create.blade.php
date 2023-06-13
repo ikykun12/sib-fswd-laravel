@@ -61,12 +61,11 @@
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
-
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <a href="{{ route('product.index') }}" class="btn btn-secondary">Cancel</a>
                 </form>
             </div>
         </div>
     </div>
-</main> Sepatu Trail Running Terrex Agravic Flow GORE
+</main>
 @endsection
