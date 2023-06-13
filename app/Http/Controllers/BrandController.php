@@ -41,6 +41,8 @@ class BrandController extends Controller
         Brand::where('id',$id)->update([
             'name'=> $request->name,
         ]);
+
+        return redirect()->route('brand.index');
     }
 
     public function destroy($id)
