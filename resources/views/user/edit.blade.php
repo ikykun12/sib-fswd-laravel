@@ -10,7 +10,7 @@
                     <form action="{{ route('user.update', $user->id) }}" method="POST">
                         @csrf
                         @method('PUT')
-                        
+
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" id="name" value="{{ $user->name }}" name="name" required>
@@ -22,10 +22,6 @@
                         <div class="mb-3">
                             <label for="phone" class="form-label">Phone</label>
                             <input type="text" class="form-control" id="phone" value="{{ $user->phone }}" name="phone" required>
-                        </div>
-                         <div class="mb-3">
-                            <label for="password" class="form-label">Passsword</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
                         </div>
                         <div class="mb-3">
                             <label for="role" class="form-label">Role</label>

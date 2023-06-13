@@ -18,11 +18,14 @@ class CategoryController extends Controller
    {
     return view('category.create');
    }
+
    public function store(Request $request)
    {
     $category = Category::create([
         'name' => $request->name
     ]);
+      // redirect ke halaman category.index
+      return redirect()->route('category.index');
    }
 
    public function edit($id)
