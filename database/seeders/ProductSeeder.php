@@ -22,7 +22,7 @@ class ProductSeeder extends Seeder
         $category = Category::all()->pluck('id')->toArray();
         $brand = Brand::all()->pluck('name')->toArray();
 
-        for ($i=0; $i < 5 ; $i++) {
+        for ($i=0; $i < 10 ; $i++) {
             $product = Product::create([
                 'category_id' => $faker->randomElement($category),
                 'name' => $faker->sentence(3),
