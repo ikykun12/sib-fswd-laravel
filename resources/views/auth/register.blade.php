@@ -6,76 +6,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register</title>
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
-    <style>
-        body {
-            background: #007bff;
-            background: linear-gradient(to right, #0062E6, #33AEFF);
-        }
-
-        .btn-login {
-            font-size: 0.9rem;
-            letter-spacing: 0.05rem;
-            padding: 0.75rem 1rem;
-        }
-
-        .btn-google {
-            color: white !important;
-            background-color: #ea4335;
-        }
-
-        .btn-facebook {
-            color: white !important;
-            background-color: #3b5998;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet" />
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-10">
+                    <div class="wrap d-md-flex">
 
-                @if (Session::get('error'))
-                    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                        <strong>Oops!</strong> Data tidak lengkap. Akun anda gagal dibuat.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
+                        <div class="col-md-6 login-wrap p-4 p-md-5">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h3 class="mb-1">Register</h3>
+                                <p class="social-media d-flex justify-content-end">
+                                    <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+                                    <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
+                                </p>
+                            </div>
+                            <form action="{{ route('register.store') }}" method="POST">
+                                @csrf
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingInput" name="name">
+                                    <label for="floatingInput">Name</label>
+                                </div>
 
-                <div class="card border-0 shadow rounded-3 my-5">
-                    <div class="card-body p-4 p-sm-5">
-                        <h5 class="card-title text-center mb-5 fw-light fs-5">Register</h5>
-                        <form action="{{ route('register.store') }}" method="POST">
-                            @csrf
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" name="name">
-                                <label for="floatingInput">Name</label>
-                            </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingInput" name="phone">
+                                    <label for="floatingInput">Phone</label>
+                                </div>
 
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" name="phone">
-                                <label for="floatingInput">Phone</label>
-                            </div>
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="floatingInput" name="email">
+                                    <label for="floatingInput">Email address</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" id="floatingPassword" name="password">
+                                    <label for="floatingPassword">Password</label>
+                                </div>
 
-                            <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput" name="email">
-                                <label for="floatingInput">Email address</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword" name="password">
-                                <label for="floatingPassword">Password</label>
-                            </div>
-
-                            <div class="d-grid">
-                                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Sign Up</button>
-                            </div>
-                        </form>
+                                <div class="d-grid">
+                                    <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Sign Up</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6 py-5">
+                            <img src="{{ asset('img/woman-yellow-jacket-holding-sale-banner-medium-shot_23-2148674142.jpg') }}"  alt="smiling" class="img-fluid">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </body>
-
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/popper.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/main.js') }}"></script>
 </html>
