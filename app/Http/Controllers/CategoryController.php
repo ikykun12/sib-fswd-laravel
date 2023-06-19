@@ -42,7 +42,7 @@ class CategoryController extends Controller
     $category->update([
         'name'=> $request->name
     ]);
-
+        return redirect()->route('category.index');
    }
 
    public function destroy($id)

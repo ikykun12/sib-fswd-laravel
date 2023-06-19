@@ -63,7 +63,6 @@ class ProductController extends Controller
             'sale_price' => 'required|integer',
             'brand' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,jpg',
-            'stock' => 'required|integer',
         ]);
 
         if ($validator->fails()) {
