@@ -17,12 +17,14 @@ class ProductController extends Controller
         $products = Product::with('category')->get();
 
 
+
         if(Auth::user()->role->name == 'Admin')
         {
             return view('product.approve', compact('products'));
         }else if (Auth::user()->role->name == 'Staff'){
             return view('product.index', compact('products'));
         }else{
+            $products = Product::where('approve', 1)->with("category")->get();
             return view('product.card', compact('products'));
         }
     }
@@ -42,8 +44,6 @@ class ProductController extends Controller
         } else {
             abort(404);
         }
-
-
     }
 
     public function create()

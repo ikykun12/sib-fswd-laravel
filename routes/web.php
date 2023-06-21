@@ -81,6 +81,7 @@ Route::middleware('auth')->group(function() {
     // Staff & Admin & Customer
     // Product
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
+    Route::post('/product/input',[ProductController::class,'input'])->name('product.input');
 
     Route::middleware('role:Admin|Staff')->group(function(){
         Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
@@ -89,6 +90,7 @@ Route::middleware('auth')->group(function() {
         Route::put('/product/{id}', [ProductController::class, 'update'])->name('product.update');
         Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
         Route::put('/product/approve/{id}',[ProductController::class,'approve'])->name('product.approve');
+
     });
 
     // Admin
